@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import Select from './shared/Select';
 import { CATEGORIES_SELECT } from '../data/data';
 import Button from './shared/Button';
+import { AddItem } from '../store/shoppingListSlice';
 
 const AddItemForm: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -10,12 +11,21 @@ const AddItemForm: React.FC = () => {
   const [category, setCategory] = useState<string>('');
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(name, quantity, category);
-  }, [name, quantity, category]);
+  const onHandleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newItem = {
+      id: Date.now().toString(),
+      name,
+      quantity: quantity || 1,
+      category,
+      purchased: false,
+    };
+    dispatch(AddItem(newItem));
+  };
 
   return (
-    <form>
+    <form onSubmit={onHandleSubmit}>
       <input
         type="text"
         value={name}

@@ -1,3 +1,11 @@
-import { legacy_createStore as createStore  } from "redux";
-import shoppingListReducer from "./shoppingListReducer"
-export const store = createStore(shoppingListReducer)
+import { configureStore } from "@reduxjs/toolkit";
+import shoppingListReducer from './shoppingListSlice'
+
+export const store = configureStore({
+    reducer:{
+        shoppingList: shoppingListReducer
+    }
+}
+)
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
