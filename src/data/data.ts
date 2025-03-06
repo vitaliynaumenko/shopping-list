@@ -1,0 +1,1 @@
+export const CATEGORIES_SELECT = ["All","Fruits", "Dairy", "Vegetables"]
