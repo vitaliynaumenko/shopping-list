@@ -1,10 +1,9 @@
-import { CATEGORIES_SELECT } from '../../data/data';
-import Select from '../shared/Select';
+import FilterBar from '../Filters';
 
 const Sidebar: React.FC = () => {
   return (
     <aside className="p-3">
-      <Select list={CATEGORIES_SELECT} />
+      <FilterBar />
     </aside>
   );
 };

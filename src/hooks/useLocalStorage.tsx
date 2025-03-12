@@ -6,6 +6,11 @@ export const useLocalStorage = () => {
   const shoppingList = useSelector((state: RootState) => state.shoppingList);
 
   useEffect(() => {
-    localStorage.setItem('products', JSON.stringify(shoppingList));
+    new Promise<void>((resolve) => {
+      setTimeout(() => {
+        localStorage.setItem('products', JSON.stringify(shoppingList));
+        resolve();
+      }, 500);
+    });
   }, [shoppingList]);
 };

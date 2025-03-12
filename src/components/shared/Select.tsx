@@ -1,6 +1,6 @@
 interface ISelectProps {
   list: string[] | null;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   props?: any;
 }
 

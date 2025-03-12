@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import shoppingListReducer from './shoppingListSlice'
+import searchQuerySlice from "./searchQuerySlice";
+import filterBarSlice from './filterBarSclice'
 
 export const store = configureStore({
     reducer:{
-        shoppingList: shoppingListReducer
+        shoppingList: shoppingListReducer,
+        searchBar: searchQuerySlice,
+        filterBar: filterBarSlice
     }
 }
 )

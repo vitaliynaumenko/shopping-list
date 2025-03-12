@@ -1,9 +1,11 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import { IShoppingItem } from '../components/ShoppingItem';
 
 interface IModalContextProps {
   isOpen: boolean;
-  openModal: () => void;
+  openModal: (itemData?: IShoppingItem) => void;
   closeModal: () => void;
+  editingItem: IShoppingItem | null;
 }
 
 const ModalContext = createContext<IModalContextProps | null>(null);
@@ -12,12 +14,21 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [editingItem, setEditingItem] = useState<IShoppingItem | null>(null);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal = (itemData?: IShoppingItem) => {
+    setEditingItem(itemData || null);
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setEditingItem(null);
+    setIsOpen(false);
+  };
 
   return (
-    <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>
+    <ModalContext.Provider
+      value={{ isOpen, openModal, closeModal, editingItem }}
+    >
       {children}
     </ModalContext.Provider>
   );
